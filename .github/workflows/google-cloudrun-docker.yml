@@ -52,7 +52,7 @@ env:
   PROJECT_ID: hay-hair-beauty # TODO: update Google Cloud project id
   GAR_LOCATION: asia-southeast2 # TODO: update Artifact Registry location
   GAR_REPOSITORY_NAME: hay-backend # TODO: update Artifact Registry Repository name
-  SERVICE: backend-hay-new # TODO: update Cloud Run service name
+  SERVICE: cloud-run-github-actions # TODO: update Cloud Run service name
   REGION: asia-southeast2 # TODO: update Cloud Run service region
 
 jobs:
