@@ -21,15 +21,29 @@ const Article = {
     }
   },
   
-  findAll: async () => {
-    try {
-      const snapshot = await firestore.collection('articles').get();
-      return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    } catch (error) {
-      console.error('Error fetching documents from Firestore:', error);
-      throw error;
-    }
-  },
+    findAll: async (page, limit) => {
+      try {
+        return await firestore.collection('articles')
+          .orderBy('createdAt', 'desc')
+          .limit(limit)
+          .offset((page - 1) * limit)
+          .get();
+      } catch (error) {
+        console.error('Terjadi kesalahan saat mengambil dokumen dari Firestore:', error);
+        throw error;
+      }
+    },
+  
+    getTotalCount: async () => {
+      try {
+        const snapshot = await firestore.collection('articles').count().get();
+        return snapshot.data().count;
+      } catch (error) {
+        console.error('Terjadi kesalahan saat mengambil jumlah dokumen dari Firestore:', error);
+        throw error;
+      }
+    },
+
 
   findById: async (id) => {
     try {

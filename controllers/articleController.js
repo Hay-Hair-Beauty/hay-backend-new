@@ -30,11 +30,20 @@ const createArticle = async (req, res) => {
 };
 
 const getAllArticles = async (req, res) => {
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const limit = 20;
+
   try {
-    const articles = await ArticleService.getAllArticles();
-    res.json(articles);
+    const { articles, currentPage, totalPages, totalItems, itemsPerPage } = await ArticleService.getAllArticles(page, limit);
+    res.json({
+      data: articles,
+      currentPage,
+      totalPages,
+      totalItems,
+      itemsPerPage
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to get articles' });
+    res.status(500).json({ error: 'Gagal mendapatkan artikel' });
   }
 };
 

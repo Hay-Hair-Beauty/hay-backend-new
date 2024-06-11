@@ -4,8 +4,28 @@ const createArticle = async (title, content, imagePath) => {
   return await Article.create(title, content, imagePath);
 };
 
-const getAllArticles = async () => {
-  return await Article.findAll();
+const getAllArticles = async (page, limit) => {
+  try {
+    const snapshot = await Article.findAll(page, limit);
+    const articles = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    const totalCount = await Article.getTotalCount();
+    const totalPages = Math.ceil(totalCount / limit);
+
+    return {
+      articles,
+      currentPage: page,
+      totalPages,
+      totalItems: totalCount,
+      itemsPerPage: articles.length
+    };
+  } catch (error) {
+    console.error('Terjadi kesalahan saat mengambil artikel:', error);
+    throw error;
+  }
 };
 
 const getArticleById = async (id) => {

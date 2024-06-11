@@ -59,6 +59,22 @@ exports.resendVerificationCode = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // Memeriksa apakah email dan password tidak diisi
+    if (!email && !password) {
+      return res.status(400).json({ error: "Email dan Password tidak boleh kosong" });
+    }
+
+    // Memeriksa apakah email tidak diisi
+    if (!email) {
+      return res.status(400).json({ error: "Email tidak boleh kosong" });
+    }
+
+    // Memeriksa apakah password tidak diisi
+    if (!password) {
+      return res.status(400).json({ error: "Password tidak boleh kosong" });
+    }
+
     const auth = getAuth(app);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
@@ -78,18 +94,19 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Mengirimkan token sebagai bagian dari respons
-    res.status(200).json({ message: "Login successful", token, userData });
+    // Mengirimkan token dan user ID sebagai bagian dari respons
+    res.status(200).json({ message: "Login successful", token, userId: user.uid, userData });
   } catch (error) {
     if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
       return res.status(403).json({ error: "Invalid email or password" });
     } else if (error.code === "auth/invalid-credential") {
-      return res.status(400).json({ error: "Invalid credentials provided" });
+      return res.status(400).json({ error: "Email atau Password Salah" });
     } else {
       return res.status(400).json({ error: error.message });
     }
   }
 };
+
 
 exports.logout = async (req, res) => {
   try {

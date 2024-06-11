@@ -1,6 +1,6 @@
 node_modules
-.env
-github-actions-service-account.json
-credentials.json
-serviceAccountKey.json
-token.json
+# .env
+# github-actions-service-account.json
+# credentials.json
+# serviceAccountKey.json
+# token.json
