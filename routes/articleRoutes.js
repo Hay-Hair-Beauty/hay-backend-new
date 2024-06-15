@@ -11,4 +11,6 @@ router.get('/articles', articleController.getAllArticles);
 router.get('/article/:id', articleController.getArticleById);
 router.delete('/delete-article/:id', checkAdmin, articleController.deleteArticle);
 
+router.get('/search-article', articleController.searchArticles);
+
 module.exports = router;

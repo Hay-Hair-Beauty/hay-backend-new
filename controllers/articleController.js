@@ -96,10 +96,56 @@ const deleteArticle = async (req, res) => {
   }
 };
 
+const searchArticles = async (req, res) => {
+  const { title } = req.query;
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const limit = req.query.limit ? parseInt(req.query.limit) : 20;
+
+  if (!title) {
+    return res.status(400).json({ error: 'Title is required for search' });
+  }
+
+  try {
+    const lowerCaseTitle = title.toLowerCase();
+    console.log('Received search request for title:', lowerCaseTitle);
+    
+    const { articles, currentPage, totalPages, totalItems, itemsPerPage } = await ArticleService.searchArticlesByTitle(lowerCaseTitle, page, limit);
+    
+    if (articles.length === 0) {
+      return res.status(404).json({ message: 'Data tidak ditemukan' });
+    }
+
+    console.log('Search results:', {
+      data: articles,
+      currentPage,
+      totalPages,
+      totalItems,
+      itemsPerPage
+    });
+
+    res.json({
+      data: articles,
+      currentPage,
+      totalPages,
+      totalItems,
+      itemsPerPage
+    });
+  } catch (error) {
+    console.error('Failed to search articles:', error);
+    res.status(500).json({ error: 'Failed to search articles' });
+  }
+};
+
+
+
+
+
+
 module.exports = {
   createArticle,
   getAllArticles,
   getArticleById,
   updateArticle,
-  deleteArticle
+  deleteArticle,
+  searchArticles
 };

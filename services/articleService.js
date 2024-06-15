@@ -40,10 +40,16 @@ const deleteArticle = async (id) => {
   await Article.delete(id);
 };
 
+const searchArticlesByTitle = async (title, page, limit) => {
+  return await Article.searchByTitle(title, page, limit);
+};
+
+
 module.exports = {
   createArticle,
   getAllArticles,
   getArticleById,
   updateArticle,
-  deleteArticle
+  deleteArticle,
+  searchArticlesByTitle,
 };

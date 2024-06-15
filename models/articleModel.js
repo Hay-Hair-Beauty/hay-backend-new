@@ -85,7 +85,43 @@ const Article = {
       console.error('Error deleting document from Firestore:', error);
       throw error;
     }
-  }
+  },
+
+  searchByTitle: async (title, page, limit) => {
+    try {
+      const lowerCaseTitle = title.toLowerCase();
+      console.log('Searching for title:', lowerCaseTitle);
+      console.log('Page:', page, 'Limit:', limit);
+  
+      // Perform a query that finds documents where the title contains the search term
+      const snapshot = await firestore.collection('articles')
+        .get();
+  
+      // Filter results manually to simulate a case-insensitive search
+      const filteredDocs = snapshot.docs.filter(doc => doc.data().title.toLowerCase().includes(lowerCaseTitle));
+  
+      // Implement pagination on the filtered results
+      const totalCount = filteredDocs.length;
+      const totalPages = Math.ceil(totalCount / limit);
+      const paginatedDocs = filteredDocs.slice((page - 1) * limit, page * limit);
+  
+      const articles = paginatedDocs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log('Articles found:', articles);
+  
+      return {
+        articles,
+        currentPage: page,
+        totalPages,
+        totalItems: totalCount,
+        itemsPerPage: articles.length
+      };
+    } catch (error) {
+      console.error('Error searching documents in Firestore:', error);
+      throw error;
+    }
+  },
+  
+  
 };
 
 module.exports = Article;
