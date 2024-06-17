@@ -3,9 +3,8 @@ const { authenticate } = require("@google-cloud/local-auth");
 const { google } = require("googleapis");
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 
-// If modifying these scopes, delete token.json.
 const SCOPES = ["https://www.googleapis.com/auth/gmail.send"];
-const PROJECT_ID = 'hay-hair-beauty';  // Ganti dengan ID proyek Anda
+const PROJECT_ID = 'hay-hair-beauty';
 const CREDENTIALS_SECRET_ID = 'my-credentials';
 const TOKEN_SECRET_ID = 'my-token';
 
@@ -17,9 +16,8 @@ const TOKEN_SECRET_ID = 'my-token';
  */
 async function accessSecretVersion(secretId) {
   const client = new SecretManagerServiceClient();
-  const versionId = 'latest';  // Bisa juga diganti dengan versi spesifik jika diperlukan
-
-  // Membangun nama secret
+  const versionId = 'latest';
+  // Membangun  secret
   const name = `projects/${PROJECT_ID}/secrets/${secretId}/versions/${versionId}`;
 
   // Mengakses versi secret
