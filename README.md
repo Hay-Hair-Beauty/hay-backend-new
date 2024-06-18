@@ -13,5 +13,5 @@ Kami Membuat Backend API menggunakan Framework Express JS.
 * 
 
 ## Authors
-* **Novri Rahman**  - [muhdharis28](https://github.com/novrirahman)
+* **Novri Rahman**  - [novrirahman](https://github.com/novrirahman)
 
