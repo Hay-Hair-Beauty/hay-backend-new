@@ -38,7 +38,10 @@ exports.postRecommendationByHairIssue = async (req, res) => {
   const { hairIssue } = req.body;
   try {
     const recommendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
-    res.json(recommendations);
+    res.json({
+      data: recommendations,
+    });
+    
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch recommendation by hair issue' });
   }
