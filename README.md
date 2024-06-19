@@ -1,6 +1,6 @@
 # Hay Healthy - Backend Service
 ![LOGO HAY-02](https://github.com/Hay-Hair-Beauty/ML-Repo/assets/101098216/e8ac271b-59aa-4db2-a926-1b94d9800283)
-This is a Capstone Project part Cloud Computing 
+This is a Capstone Project as part of a Cloud Computing
 
 # How To Install
 
@@ -27,7 +27,7 @@ To install and run the Hay Healthy backend service, you'll need the following:
 * Firebase
 * Firestore
 * Cloud Storage
-* Deploy with Cloud Run
+* Deployed with Cloud Run
 
 ## Authors
 * **Novri Rahman**  - [novrirahman](https://github.com/studyarrahman)
