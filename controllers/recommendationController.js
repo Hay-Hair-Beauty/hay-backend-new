@@ -9,12 +9,11 @@ exports.getRecommendations = async (req, res) => {
   }
 };
 
-
 exports.getRecommendationByHairIssue = async (req, res) => {
   const { hairIssue } = req.params;
   try {
-    const recomendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
-    res.json(recomendations);
+    const recommendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
+    res.json(recommendations);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch recommendation by hair issue' });
   }
@@ -41,7 +40,6 @@ exports.postRecommendationByHairIssue = async (req, res) => {
     res.json({
       data: recommendations,
     });
-    
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch recommendation by hair issue' });
   }

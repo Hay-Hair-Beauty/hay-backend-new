@@ -1,58 +1,32 @@
-const axios = require('axios');
+const { Firestore } = require('@google-cloud/firestore');
 const dotenv = require('dotenv');
-const csvParser = require('csv-parser');
-const { Transform } = require('stream');
 
 dotenv.config();
 
-const csvUrl = 'https://storage.googleapis.com/hay-recomendations/data_recomm.csv';
+const firestore = new Firestore();
+const collectionName = 'recommendations';
 
 const getRecommendationData = async () => {
   try {
-    const csvData = await downloadCsvFromGcs();
-    return csvData;
+    const snapshot = await firestore.collection(collectionName).get();
+    const recommendations = snapshot.docs.map(doc => doc.data());
+    return recommendations;
   } catch (error) {
-    console.error('Error fetching data from GCS:', error);
+    console.error('Error fetching data from Firestore:', error);
     throw error;
   }
 };
 
-
 const getRecommendationByHairIssue = async (hairIssue) => {
-    try {
-      const csvData = await downloadCsvFromGcs();
-      const products = csvData.filter(row => row.hair_issue === hairIssue);
-      return products;
-    } catch (error) {
-      console.error('Error fetching data from GCS:', error);
-      throw error;
-    }
-  };
-
-const downloadCsvFromGcs = async () => {
-    try {
-      const csvData = [];
-      const response = await axios.get(csvUrl, { responseType: 'stream' });
-      const csvTransform = new Transform({
-        objectMode: true,
-        transform: (chunk, encoding, callback) => {
-          callback(null, chunk);
-        }
-      });
-  
-      return new Promise((resolve, reject) => {
-        response.data
-          .pipe(csvParser())
-          .pipe(csvTransform)
-          .on('data', (row) => csvData.push(row))
-          .on('end', () => resolve(csvData))
-          .on('error', (err) => reject(err));
-      });
-    } catch (error) {
-      console.error('Error fetching data from GCS:', error);
-      throw error;
-    }
-  };
+  try {
+    const snapshot = await firestore.collection(collectionName).where('hair_issue', '==', hairIssue).get();
+    const recommendations = snapshot.docs.map(doc => doc.data());
+    return recommendations;
+  } catch (error) {
+    console.error('Error fetching data from Firestore:', error);
+    throw error;
+  }
+};
 
 module.exports = {
   getRecommendationData,
