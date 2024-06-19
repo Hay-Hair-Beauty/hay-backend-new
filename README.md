@@ -22,7 +22,8 @@ To install and run the Hay Healthy backend service, you'll need the following:
    `npm install`
 5. Run the Project: <br/>
    `npm run start`
-6. Access the provided API in http://localhost:3000
+6. Access the provided API at <br/>
+   `http://localhost:3000`
 
 
 ## Built With
