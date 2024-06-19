@@ -15,13 +15,13 @@ To install and run the Hay Healthy backend service, you'll need the following:
 1. Clone the Repository: <br/>
    `git clone https://github.com/Hay-Hair-Beauty/hay-backend-new.git`
 2. Navigate to the Backend Folder: <br/>
-   cd hay-backend-new
+   `cd hay-backend-new`
 3. Rename the Example Environment File: <br/>
-   example.env to .env
+   `mv example.env .env`
 4. Install the Project Dependencies: <br/>
-   npm install
+   `npm install`
 5. Run the Project: <br/>
-   npm run start
+   `npm run start`
 ## Built With
 * Express JS
 * Firebase
