@@ -5,15 +5,22 @@ This is a Capstone Project part Cloud Computing
 # How To Install
 
 ## Requirements
+To install and run the Hay Healthy backend service, you'll need the following:
+
+* Node.js (version 14 or higher)
+* npm (Node.js package manager)
+* Git (for cloning the repository)
 
 ## Steps
-1. Clone Repo <br/>
+1. Clone the Repository: <br/>
    git clone https://github.com/Hay-Hair-Beauty/hay-backend-new.git
-2. Go to Backend Folder <br/>
+2. Navigate to the Backend Folder: <br/>
    cd hay-backend-new
-3. Install Project <br/>
+3. Rename the Example Environment File: <br/>
+   example.env to .env
+4. Install the Project Dependencies: <br/>
    npm install
-4. Run Project <br/>
+5. Run the Project: <br/>
    npm run start
 ## Built With
 * Express JS
