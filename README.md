@@ -13,6 +13,8 @@ This is a Capstone Project part Cloud Computing
    cd hay-backend-new
 3. Install Project <br/>
    npm install
+4. Run Project <br/>
+   npm run start
 ## Built With
 * Express JS
 * Firebase
