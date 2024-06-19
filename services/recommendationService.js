@@ -17,9 +17,9 @@ const getRecommendationData = async () => {
   }
 };
 
-const getRecommendationByHairIssue = async (hairIssue) => {
+const getRecommendationByHairIssue = async (label) => {
   try {
-    const snapshot = await firestore.collection(collectionName).where('hair_issue', '==', hairIssue).get();
+    const snapshot = await firestore.collection(collectionName).where('hair_issue', '==', label).get();
     const recommendations = snapshot.docs.map(doc => doc.data());
     return recommendations;
   } catch (error) {
