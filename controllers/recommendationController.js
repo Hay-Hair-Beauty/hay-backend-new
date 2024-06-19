@@ -37,13 +37,13 @@ exports.getRandomRecommendationByHairIssue = async (req, res) => {
 exports.postRecommendationByHairIssue = async (req, res) => {
   try {
     // Validasi body request
-    const { hairIssue } = req.body;
-    if (!hairIssue) {
+    const { label } = req.body;
+    if (!label) {
       return res.status(400).json({ error: 'Hair issue is required' });
     }
 
     // Mendapatkan rekomendasi berdasarkan hairIssue
-    const recommendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
+    const recommendations = await recommendationService.getRecommendationByHairIssue(label);
     
     // Jika tidak ada rekomendasi yang ditemukan
     if (recommendations.length === 0) {
