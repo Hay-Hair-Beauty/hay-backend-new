@@ -9,11 +9,12 @@ exports.getRecommendations = async (req, res) => {
   }
 };
 
+
 exports.getRecommendationByHairIssue = async (req, res) => {
   const { hairIssue } = req.params;
   try {
-    const recommendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
-    res.json(recommendations);
+    const recomendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
+    res.json(recomendations);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch recommendation by hair issue' });
   }
@@ -34,13 +35,26 @@ exports.getRandomRecommendationByHairIssue = async (req, res) => {
 };
 
 exports.postRecommendationByHairIssue = async (req, res) => {
-  const { hairIssue } = req.body;
   try {
+    // Validasi body request
+    const { hairIssue } = req.body;
+    if (!hairIssue) {
+      return res.status(400).json({ error: 'Hair issue is required' });
+    }
+
+    // Mendapatkan rekomendasi berdasarkan hairIssue
     const recommendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
+    
+    // Jika tidak ada rekomendasi yang ditemukan
+    if (recommendations.length === 0) {
+      return res.status(404).json({ error: 'No recommendations found for the given hair issue' });
+    }
+
+    // Mengembalikan data rekomendasi
     res.json({
       data: recommendations,
     });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch recommendation by hair issue' });
+    next(error);
   }
 };
