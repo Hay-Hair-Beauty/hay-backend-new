@@ -8,11 +8,11 @@ Kami Membuat Backend API menggunakan Framework Express JS.
 ## Requirements
 
 ## Steps
-1. Clone Repo
+1. Clone Repo <br/>
    git clone https://github.com/Hay-Hair-Beauty/hay-backend-new.git
-2. Go to Backend Folder
+2. Go to Backend Folder <br/>
    cd hay-backend-new
-3. Install Project
+3. Install Project <br/>
    npm install
 ## Built With
 * Express JS
