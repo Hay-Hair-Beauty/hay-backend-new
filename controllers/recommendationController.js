@@ -43,7 +43,7 @@ exports.postRecommendationByHairIssue = async (req, res) => {
     }
 
     // Mendapatkan rekomendasi berdasarkan hairIssue
-    const recommendations = await recommendationService.getRecommendationByHairIssue('Dry Hair');
+    const recommendations = await recommendationService.getRecommendationByHairIssue(hairIssue);
     
     // Jika tidak ada rekomendasi yang ditemukan
     if (recommendations.length === 0) {
