@@ -3,9 +3,14 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const firestore = new Firestore({
+let firestoreConfig = {
   projectId: process.env.GCLOUD_PROJECT_ID,
-  keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-});
+};
+
+if (process.env.NODE_ENV === 'DEV') {
+  firestoreConfig.keyFilename = './serviceAccountKey.json';
+}
+
+const firestore = new Firestore(firestoreConfig);
 
 module.exports = firestore;
