@@ -3,15 +3,11 @@ const serviceAccount = require("../serviceAccountKey.json");
 const { initializeApp } = require("firebase/app");
 const { getAnalytics } = require("firebase/analytics");
 
-const dotenv = require('dotenv');
-dotenv.config();
 
-if (process.env.NODE_ENV === 'DEV') {
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://hay-hair-beauty.firebaseio.com",
-  });
-}
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://hay-hair-beauty.firebaseio.com",
+});
 
 const db = admin.firestore();
 
