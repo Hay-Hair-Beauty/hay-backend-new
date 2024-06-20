@@ -1,40 +1,34 @@
 const admin = require("firebase-admin");
+const serviceAccount = require("../serviceAccountKey.json");
 const { initializeApp } = require("firebase/app");
 const { getAnalytics } = require("firebase/analytics");
-require('dotenv').config(); // Memuat variabel lingkungan dari file .env
 
-let serviceAccount;
+const dotenv = require('dotenv');
+dotenv.config();
 
 if (process.env.NODE_ENV === 'DEV') {
-  // Parsing service account key dari file saat di lingkungan pengembangan
-  serviceAccount = require('../serviceAccountKey.json');
-} else {
-  // Menggunakan service account default saat di lingkungan produksi
-  serviceAccount = undefined;
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://hay-hair-beauty.firebaseio.com",
+  });
 }
-
-const adminConfig = serviceAccount
-  ? { credential: admin.credential.cert(serviceAccount), databaseURL: process.env.DATABASE_URL }
-  : { databaseURL: process.env.DATABASE_URL };
-
-admin.initializeApp(adminConfig);
 
 const db = admin.firestore();
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID,
+  apiKey: "AIzaSyCXr2cwdIn-l2AKnVcz5eAGGhxQc3OGpeM",
+  authDomain: "hay-hair-beauty.firebaseapp.com",
+  projectId: "hay-hair-beauty",
+  storageBucket: "hay-hair-beauty.appspot.com",
+  messagingSenderId: "126780028253",
+  appId: "1:126780028253:web:d0386b51b13f49443124b4",
+  measurementId: "G-5QJHMN455P",
 };
 
-// Inisialisasi Firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Memeriksa apakah lingkungan mendukung Firebase Analytics
+// Check if the environment supports Firebase Analytics
 if (typeof window !== "undefined" && typeof navigator !== "undefined") {
   const analytics = getAnalytics(app);
 }
