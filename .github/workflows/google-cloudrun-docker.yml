@@ -49,10 +49,10 @@ on:
     branches: ["main"]
 
 env:
-  PROJECT_ID: hay-hair-beauty
+  PROJECT_ID: hay-hair-healthy
   GAR_LOCATION: asia-southeast2
-  GAR_REPOSITORY_NAME: hay-backend
-  SERVICE: cloud-run-github-actions 
+  GAR_REPOSITORY_NAME: hay-registry
+  SERVICE: hay 
   REGION: asia-southeast2 
 
 jobs:

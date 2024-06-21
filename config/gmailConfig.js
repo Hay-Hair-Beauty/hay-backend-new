@@ -4,7 +4,7 @@ const { google } = require("googleapis");
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager');
 
 const SCOPES = ["https://www.googleapis.com/auth/gmail.send"];
-const PROJECT_ID = 'hay-hair-beauty';
+const PROJECT_ID = 'hay-hair-healthy';
 const CREDENTIALS_SECRET_ID = 'my-credentials';
 const TOKEN_SECRET_ID = 'my-token';
 

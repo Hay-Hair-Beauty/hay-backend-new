@@ -6,19 +6,19 @@ const { getAnalytics } = require("firebase/analytics");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://hay-hair-beauty.firebaseio.com",
+  databaseURL: "https://hay-hair-healthy.firebaseio.com",
 });
 
 const db = admin.firestore();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCXr2cwdIn-l2AKnVcz5eAGGhxQc3OGpeM",
-  authDomain: "hay-hair-beauty.firebaseapp.com",
-  projectId: "hay-hair-beauty",
-  storageBucket: "hay-hair-beauty.appspot.com",
-  messagingSenderId: "126780028253",
-  appId: "1:126780028253:web:d0386b51b13f49443124b4",
-  measurementId: "G-5QJHMN455P",
+  apiKey: "AIzaSyDi5fmucja1cyvYY_9yNP2g70mHFt1UFH0",
+  authDomain: "hay-hair-healthy.firebaseapp.com",
+  projectId: "hay-hair-healthy",
+  storageBucket: "hay-hair-healthy.appspot.com",
+  messagingSenderId: "203380541286",
+  appId: "1:203380541286:web:418782904d89a660d7eaa7",
+  measurementId: "G-793PMGL96E"
 };
 
 // Initialize Firebase
