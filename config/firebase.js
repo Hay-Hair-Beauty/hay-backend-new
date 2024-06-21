@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = process.env.SERVICE_ACCOUNT ||require("../serviceAccountKey.json");
+const serviceAccount = require("../serviceAccountKey.json");
 const { initializeApp } = require("firebase/app");
 const { getAnalytics } = require("firebase/analytics");
 
